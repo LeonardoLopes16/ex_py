@@ -1,0 +1,1 @@
+day = int(input('Quantos dias o carro ficou alugado? \n'))
