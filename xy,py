@@ -1,0 +1,17 @@
+import pyautogui
+
+def main():
+    while True:
+        # Obtém a posição atual do mouse
+        x, y = pyautogui.position()
+
+        # Exibe as coordenadas
+        print(f"A posição do mouse é: X = {x}, Y = {y}")
+
+        # Pergunta se o usuário deseja parar
+        resposta = input("Deseja parar? (s/n): ")
+        if resposta.lower() == "s":
+            break
+
+if __name__ == "__main__":
+    main()
