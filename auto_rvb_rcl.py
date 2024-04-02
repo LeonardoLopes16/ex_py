@@ -11,142 +11,297 @@ first_inst = input("INSIRA O NOME DOS INSTRUTORES DO PRIMEIRO DIA: ")
 
 second_inst = input("INSIRA O NOME DOS INSTRUTORES DO SEGUNDO DIA: ")
 
+print('''Escolha o Treinamento:
+[1] RVB
+[2] RCL
+[3] CRM
+''')
+
 while True:
-    
+        curso = int(input('Digite sua opção: '))
+        if curso == 1:
+            escolha = 'RVB'
+            break
+        elif curso == 2:
+            escolha = 'RCL'
+            break
+
     #COLETAR DATAS
-    try:
-        data_inicio = datetime.strptime(data_inicio, "%d/%m/%Y")
-        data_fim = datetime.strptime(data_fim, "%d/%m/%Y")
+        try:
+            data_inicio = datetime.strptime(data_inicio, "%d/%m/%Y")
+            data_fim = datetime.strptime(data_fim, "%d/%m/%Y")
 
-    except ValueError:
-        print("Formato de data inválido. Certifique-se de usar o formato DD/MM/AAAA.")
+        except ValueError:
+            print("Formato de data inválido. Certifique-se de usar o formato DD/MM/AAAA.")
 
-    nrt = int(input("INSIRA O NÚMERO DA NRT: "))
-    for _ in range(10):
-        nrt=nrt+1
-        # SACI
-        pyautogui.click(517,26, duration=0.5)
+        nrt = int(input("INSIRA O NÚMERO DA NRT: "))
+        nrt = nrt - 1
+        executar_for = True
+if curso == 1:
+        for _ in range(2):
+            nrt = nrt + 1
+            # SACI
+            pyautogui.click(517,26, duration=0.5)
+            pyautogui.hotkey('ctrl', 'home')
+                
+            # SISHAB --> NRT --> ENIVIADAS
+            pyautogui.moveTo(195,508,duration=0.3)
+            pyautogui.moveTo(252,502,duration=0.3)
+            pyautogui.click(309,510,duration=0.3)
+                
+            time.sleep(2)
+                
+            for _ in range(11):
+                pyautogui.press('tab')
+            pyautogui.write(f'{nrt}')
+            pyautogui.press('tab')
+            pyautogui.write('2024')
+                
+            #consultar("enter")
+            pyautogui.press('enter')
+            time.sleep(1)
+                
+            #Editar Matérias (24x"tab"),("enter")
+            time.sleep(1.5)
+            for _ in range(24):
+                pyautogui.press('tab')
+            pyautogui.hotkey('enter')
+
+            if executar_for:
+                # RVB - SOLO B739 - PRÁTICO AERONAVES E GCI
+                time.sleep(1.5)
+                pyautogui.click(1330,694,duration=0.3)
+
+
+                for _ in range(3):
+                    pyautogui.press('tab')
+                pyautogui.write(f'{first_inst} {second_inst}')
+                pyautogui.press('tab')
+                
+
+                # DATA DE INICIO
+                pyautogui.write(data_inicio)
+                pyautogui.press('tab')
+                
+
+                # HORÁRIO DE INICIO
+                pyautogui.write("16:00")
+                pyautogui.press('tab')
+                
+
+                #DATA DE TÉRMINO
+                pyautogui.write(data_fim)
+                pyautogui.press('tab')
+                
+
+                #HORÁRIO DE TÉRMINO
+                pyautogui.write('11:30')
+                pyautogui.press('tab')           
+                pyautogui.write('SALA - SIMULADOR - BOTE')
+                executar_for = False
+                pyautogui.press('enter')
             
-        # SISHAB --> NRT --> ENIVIADAS
-        pyautogui.moveTo(195,508,duration=0.3)
-        pyautogui.moveTo(252,502,duration=0.3)
-        pyautogui.click(309,510,duration=0.3)
+            # RVB - EMG GERAIS- EVENTOS MEDICOS PRÁTICO
+            time.sleep(1.5)
+            pyautogui.click(1330,760,duration=0.3)
+
+
+            for _ in range(3):
+                pyautogui.press('tab')
+            pyautogui.write(f'{second_inst}')
+            pyautogui.press('tab')
             
-        time.sleep(2)
+
+
+            # DATA DE INICIO
+            pyautogui.write(data_fim)
+            pyautogui.press('tab')
             
-        for _ in range(11):
+
+            # HORÁRIO DE INICIO
+            pyautogui.write("13:00")
             pyautogui.press('tab')
-        pyautogui.write(f'{nrt}')
-        pyautogui.press('tab')
-        pyautogui.write('2024')
             
-        #consultar("enter")
-        pyautogui.press('enter')
-        time.sleep(1)
+
+            #DATA DE TÉRMINO
+            pyautogui.write(data_fim)
+            pyautogui.press('tab')
             
-        #Editar Matérias (24x"tab"),("enter")
-        time.sleep(1.5)
-        for _ in range(24):
+
+            #HORÁRIO DE TÉRMINO
+            pyautogui.write('18:00')
             pyautogui.press('tab')
-        pyautogui.hotkey('enter')
+            pyautogui.write('SALA DE AULA')
+            pyautogui.press('enter')
 
-        # RVB - SOLO B739 - PRÁTICO AERONAVES E GCI
-        time.sleep(1.5)
-        pyautogui.click(1330,694,duration=0.3)
+        # RVB - EMERGÊNCIAS GERAIS/BOTE - PRÁTICO
+            time.sleep(1.5)
+            pyautogui.click(1330,776,duration=0.3)
 
 
-        for _ in range(3):
+            for _ in range(3):
+                pyautogui.press('tab')
+            pyautogui.write(f'{first_inst}')
             pyautogui.press('tab')
-        pyautogui.write(f'{second_inst}')
-        pyautogui.press('tab')
-
-        # DATA DE INICIO
-        pyautogui.write(data_inicio)
-        pyautogui.press('tab')
-
-        # HORÁRIO DE INICIO
-        pyautogui.write("16:00")
-        pyautogui.press('tab')
-
-        #DATA DE TÉRMINO
-        pyautogui.write(data_fim)
-        pyautogui.press('tab')
-
-        #HORÁRIO DE TÉRMINO
-        pyautogui.write('11:30')
-        pyautogui.press('tab')
-
-        pyautogui.write('SIMULADOR + SALA  2')
-
-    # RVB - EMG GERAIS- EVENTOS MEDICOS PRÁTICO
-        time.sleep(1.5)
-        pyautogui.click(1330,760,duration=0.3)
-
-
-        for _ in range(3):
+            
+            # DATA DE INICIO
+            pyautogui.write(data_inicio)
             pyautogui.press('tab')
 
-        pyautogui.click(278,17,duration=0.3)
-        time.sleep(1)
-        for _ in range(1):
-            pyautogui.press('tab')
-        pyautogui.hotkey('ctrl','c')
-        time.sleep(1)
-        pyautogui.click(517,26, duration=0.5)
-        pyautogui.hotkey('ctrl','v')
-        pyautogui.press('tab')
-
-        # DATA DE INICIO
-        pyautogui.write(data_fim)
-        pyautogui.press('tab')
-
-        # HORÁRIO DE INICIO
-        pyautogui.write("13:00")
-        pyautogui.press('tab')
-
-        #DATA DE TÉRMINO
-        pyautogui.write(data_fim)
-        pyautogui.press('tab')
-
-        #HORÁRIO DE TÉRMINO
-        pyautogui.write('18:00')
-        pyautogui.press('tab')
-
-        pyautogui.write('SALA 2')
-
-    # RVB - EMERGÊNCIAS GERAIS/BOTE - PRÁTICO
-        time.sleep(1.5)
-        pyautogui.click(1330,776,duration=0.3)
-
-
-        for _ in range(3):
+            # HORÁRIO DE INICIO
+            pyautogui.write("08:30")
             pyautogui.press('tab')
 
-        pyautogui.click(278,17,duration=0.3)
-        time.sleep(1)
-        for _ in range(1):
+            #DATA DE TÉRMINO
+            pyautogui.write(data_inicio)
             pyautogui.press('tab')
-        pyautogui.hotkey('ctrl','c')
-        time.sleep(1)
-        pyautogui.click(517,26, duration=0.5)
-        pyautogui.hotkey('ctrl','v')
-        pyautogui.press('tab')
 
-        # DATA DE INICIO
-        pyautogui.write(data_inicio)
-        pyautogui.press('tab')
+            #HORÁRIO DE TÉRMINO
+            pyautogui.write('16:00')
+            pyautogui.press('tab')
+            pyautogui.write('SALA - SIMULADOR - BOTE')
+            pyautogui.press('enter')
 
-        # HORÁRIO DE INICIO
-        pyautogui.write("08:30")
-        pyautogui.press('tab')
+nrt = int(input("INSIRA O NÚMERO DA NRT: "))
+nrt = nrt - 1
 
-        #DATA DE TÉRMINO
-        pyautogui.write(data_inicio)
-        pyautogui.press('tab')
+if curso == 2:
+            for _ in range(2):
+                nrt = nrt + 1
+            # SACI
+                pyautogui.click(517,26, duration=0.5)
+                    
+                # SISHAB --> NRT --> ENIVIADAS
+                pyautogui.moveTo(195,508,duration=0.3)
+                pyautogui.moveTo(252,502,duration=0.3)
+                pyautogui.click(309,510,duration=0.3)
+                    
+                time.sleep(2)
+                    
+                for _ in range(11):
+                    pyautogui.press('tab')
+                pyautogui.write(f'{nrt}')
+                pyautogui.press('tab')
+                pyautogui.write('2024')
+                    
+                #consultar("enter")
+                pyautogui.press('enter')
+                time.sleep(1)
+                    
+                #Editar Matérias (24x"tab"),("enter")
+                time.sleep(1.5)
+                for _ in range(24):
+                    pyautogui.press('tab')
+                pyautogui.hotkey('enter')
+                    
+            #RCL - SOLO B739 - PRÁTICO AERONAVES 3 H.A.
+                time.sleep(1.5)
+                pyautogui.click(1330,555,duration=0.3)
 
-        #HORÁRIO DE TÉRMINO
-        pyautogui.write('16:00')
-        pyautogui.press('tab')
 
-        pyautogui.write('SIMULADOR + SALA 1')
-    
+                for _ in range(3):
+                    pyautogui.press('tab')
+                pyautogui.write(f'{second_inst}')
+                pyautogui.press('tab')
+                            
+                # DATA DE INICIO
+                pyautogui.write(data_fim)
+                pyautogui.press('tab')
+
+                # HORÁRIO DE INICIO
+                pyautogui.write("08:30")
+                pyautogui.press('tab')
+
+                #DATA DE TÉRMINO
+                pyautogui.write(data_fim)
+                pyautogui.press('tab')
+
+                #HORÁRIO DE TÉRMINO
+                pyautogui.write('11:30')
+                pyautogui.press('tab')
+                pyautogui.write('SALA 7 + AUDITORIO(MOCK UP)')
+                pyautogui.press('enter')
+
+                #RCL - EMERGÊNCIAS GERAIS - PRÁTICO
+                time.sleep(1.5)
+                pyautogui.click(1330,597,duration=0.3)
+
+
+                for _ in range(3):
+                    pyautogui.press('tab')
+                pyautogui.write(f'{second_inst}')
+                pyautogui.press('tab')
+                            
+                    # DATA DE INICIO
+                pyautogui.write(data_fim)
+                pyautogui.press('tab')
+
+                # HORÁRIO DE INICIO
+                pyautogui.write("13:00")
+                pyautogui.press('tab')
+
+                #DATA DE TÉRMINO
+                pyautogui.write(data_fim)
+                pyautogui.press('tab')
+
+                #HORÁRIO DE TÉRMINO
+                pyautogui.write('18:00')
+                pyautogui.press('tab')
+                pyautogui.write('SALA 7 + AUDITORIO(MOCK UP)')
+                pyautogui.press('enter')
+
+            #RCL - EMG GERAIS- EVENTOS MEDICOS PRÁTICO
+                time.sleep(1.5)
+                pyautogui.click(1330,634,duration=0.3)
+
+
+                for _ in range(3):
+                    pyautogui.press('tab')
+                pyautogui.write(f'{first_inst}')
+                pyautogui.press('tab')
+                            
+                # DATA DE INICIO
+                pyautogui.write(data_inicio)
+                pyautogui.press('tab')
+
+                # HORÁRIO DE INICIO
+                pyautogui.write("08:30")
+                pyautogui.press('tab')
+
+                #DATA DE TÉRMINO
+                pyautogui.write(data_fim)
+                pyautogui.press('tab')
+
+                #HORÁRIO DE TÉRMINO
+                pyautogui.write('15:00')
+                pyautogui.press('tab')
+                pyautogui.write('SALA 7')
+                pyautogui.press('enter')
+
+                #RCL - EMG GERAIS- CONJ. PILOTOS PRÁTICO
+                time.sleep(1.5)
+                pyautogui.click(1330,659,duration=0.3)
+
+
+                for _ in range(3):
+                    pyautogui.press('tab')
+                pyautogui.write(f'{first_inst}')
+                pyautogui.press('tab')
+                            
+                # DATA DE INICIO
+                pyautogui.write(data_inicio)
+                pyautogui.press('tab')
+
+                # HORÁRIO DE INICIO
+                pyautogui.write("15:00")
+                pyautogui.press('tab')
+
+                #DATA DE TÉRMINO
+                pyautogui.write(data_fim)
+                pyautogui.press('tab')
+
+                #HORÁRIO DE TÉRMINO
+                pyautogui.write('16:00')
+                pyautogui.press('tab')
+                pyautogui.write('SALA 7')
+                pyautogui.press('enter')
